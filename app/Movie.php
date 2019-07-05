@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
+
+    protected $fillable = [
+        'name', 'watched', 'time_left','user_id',
+    ];
+
     protected $casts = [
         'watched' => 'boolean',
     ];

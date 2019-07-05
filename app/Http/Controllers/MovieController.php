@@ -15,12 +15,12 @@ class MovieController extends Controller
     public function index()
     {
         $movies=Movie::all();
-        return 
+        return view('movies.index',compact('movies'));
     }
 
     public function create()
     {
-            
+            return view('movies.create');
     }
 
     public function edit($id)
