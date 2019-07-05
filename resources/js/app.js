@@ -6,6 +6,10 @@
 
 require('./bootstrap');
 
+$(document).ready(function() {
+    $('#indexTable').DataTable();
+} );
+
 window.Vue = require('vue');
 
 /**

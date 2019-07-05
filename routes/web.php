@@ -20,8 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/movies', 'MovieController@index')->name('movies');
-Route::post('/movies', 'MovieController@store')->name('movies');
+Route::post('/movies', 'MovieController@store')->name('movies_store');
 Route::get('/movies/create', 'MovieController@create')->name('movie_create');
-Route::put('/movie/{id}/edit', 'MovieController@edit')->name('movie_edit');
-Route::get('/movie/{id}', 'MovieController@show')->name('movie_show');
-Route::delete('/movie/{id}', 'MovieController@delete')->name('movie_delete');
+Route::get('/movie/{id}/edit', 'MovieController@edit')->name('movie_edit');
+Route::post('/movie/edit', 'MovieController@update')->name('movie_update');
+Route::post('/movie/delete', 'MovieController@delete')->name('movie_delete');

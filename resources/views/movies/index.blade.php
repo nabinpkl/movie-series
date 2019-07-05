@@ -15,8 +15,10 @@
                     @endif
 
                     <a href="/movies/create" class="btn btn-primary">Add New</a>
-
-                    <table class="table">
+                        <br>
+                        <br>
+                        
+                    <table class="table" id="indexTable">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">#</th>
@@ -32,7 +34,7 @@
                           <tr>
                             <th scope="row">{{$movie->id}}</th>
                             <td><a href="/movie/{{$movie->id}}">{{$movie->name}}</a></td>
-                            <td>{{$movie->watched}}</td>
+                            <td>{{$movie->watched?'yes':'no'}}</td>
                             <td>{{$movie->time_left}}</td>
                             <td>{{$movie->created_at->toFormattedDateString()}}</td>
                             <td>
@@ -40,10 +42,10 @@
                                 <a href="{{ URL::to('movie/' . $movie->id . '/edit') }}">
                                     <button type="button" class="btn btn-warning">Edit</button>
                                 </a>&nbsp;
-                                <form action="{{url('movie', [$movie->id])}}" method="POST">
-                                      <input type="hidden" name="_method" value="DELETE">
-                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                         <input type="submit" class="btn btn-danger" value="Delete"/>
+                                <form action="/movie/delete" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{$movie->id}}" id="movie_id" name="movie_id">
+                                    <input type="submit" class="btn btn-danger" value="Delete"/>
                                    </form>
                             </div>
                           </td>

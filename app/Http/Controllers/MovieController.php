@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Movie;
 
 class MovieController extends Controller
@@ -25,22 +26,47 @@ class MovieController extends Controller
 
     public function store(Request $request)
     {
-            return redirect('movies');
+      $validatedData=  $request->validate([
+            'name'=>'required|max:255',
+            'time_left'=>'max:255',
+        ]);
+        $movie = new Movie();
+        $movie->user_id = Auth::id();
+        $movie->name = $validatedData['name'];
+        $movie->watched = $request->has('watched')?1:0;
+        $movie->time_left = $validatedData['time_left'];
+        $movie->save();
+        return redirect('movies');
     }
 
     public function edit($id)
     {
-            
+        $movie=Movie::findOrFail($id);
+        return view('movies.edit',compact('movie'));            
     }
 
-    public function show($id)
+    public function update(Request $request)
     {
-            
+        $validatedData=  $request->validate([
+            'name'=>'required|max:255',
+            'time_left'=>'max:255',
+        ]);
+        $movie=Movie::findOrFail($request->movie_id);
+        $movie->name = $validatedData['name'];
+        $movie->watched = $request->has('watched')?1:0;
+        $movie->time_left = $validatedData['time_left'];
+        $movie->save();
+        return redirect('movies');    
     }
 
-    public function delete($id)
+    
+
+    public function delete(Request $request)
     {
-            
+        $movie=Movie::findOrFail($request->movie_id);
+        $movie->delete();
+        return redirect('movies');
+        
     }
     
 }
