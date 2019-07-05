@@ -10,5 +10,9 @@ class Movie extends Model
         'watched' => 'boolean',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }
