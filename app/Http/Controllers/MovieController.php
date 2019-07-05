@@ -25,7 +25,7 @@ class MovieController extends Controller
 
     public function store(Request $request)
     {
-            return view('movies.create');
+            return redirect('movies');
     }
 
     public function edit($id)

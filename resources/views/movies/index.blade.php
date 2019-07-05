@@ -14,6 +14,8 @@
                         </div>
                     @endif
 
+                    <a href="/movies/create" class="btn btn-primary">Add New</a>
+
                     <table class="table">
                         <thead class="thead-dark">
                           <tr>
