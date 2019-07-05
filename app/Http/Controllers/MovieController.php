@@ -23,6 +23,11 @@ class MovieController extends Controller
             return view('movies.create');
     }
 
+    public function store(Request $request)
+    {
+            return view('movies.create');
+    }
+
     public function edit($id)
     {
             
