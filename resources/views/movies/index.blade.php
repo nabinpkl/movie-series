@@ -33,7 +33,7 @@
                           @foreach($movies as $movie)
                           <tr>
                             <th scope="row">{{$movie->id}}</th>
-                            <td><a href="/movie/{{$movie->id}}">{{$movie->name}}</a></td>
+                            <td>{{$movie->name}}</td>
                             <td>{{$movie->watched?'yes':'no'}}</td>
                             <td>{{$movie->time_left}}</td>
                             <td>{{$movie->created_at->toFormattedDateString()}}</td>
