@@ -14,8 +14,44 @@
                         </div>
                     @endif
 
-                    <a href="/movies/create" class="btn btn-primary">Add New</a>
-                        <br>
+                    <form action="/movies" method="POST">
+                        @csrf
+                        <div class="form-group row">
+                            <label class=" col-sm-2 col-form-label" for="name">Movie Name </label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="movieName"  name="name" value="{{old('name')}}">
+                        </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class="control-label col-sm-2" for="watched">Watched </label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" class="form-control" id="watched" name="watched" value="watched" @if(old('watched')) checked @endif>
+                        </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class=" col-sm-2 col-form-label" for="time">Time Left </label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="time_left" name="time_left" value="{{old('time_left')}}">
+                            </div>
+                        </div>
+                        
+                          @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                          @endif
+                          <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        </form>
+                                                
+                    <br>
                         <br>
                         
                     <table class="table" id="indexTable">
