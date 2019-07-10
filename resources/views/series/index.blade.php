@@ -13,6 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <a href="/movies" class="btn btn-dark">Movies</a>
+                    <br>
+                    <br>
 
                     <form action="/series" method="POST">
                         @csrf
