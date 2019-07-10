@@ -8,7 +8,10 @@ require('./bootstrap');
 
 $(document).ready(function() {
     $('#indexTable').DataTable();
+    $('#seriesTable').DataTable();
 } );
+
+
 
 window.Vue = require('vue');
 

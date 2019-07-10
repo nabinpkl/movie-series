@@ -25,3 +25,10 @@ Route::get('/movies/create', 'MovieController@create')->name('movie_create');
 Route::get('/movie/{id}/edit', 'MovieController@edit')->name('movie_edit');
 Route::post('/movie/edit', 'MovieController@update')->name('movie_update');
 Route::post('/movie/delete', 'MovieController@delete')->name('movie_delete');
+
+Route::get('/series', 'SeriesController@index')->name('series');
+Route::post('/series', 'SeriesController@store')->name('series_store');
+Route::get('/series/create', 'SeriesController@create')->name('series_create');
+Route::get('/series/{id}/edit', 'SeriesController@edit')->name('series_edit');
+Route::post('/series/edit', 'SeriesController@update')->name('series_update');
+Route::post('/series/delete', 'SeriesController@delete')->name('series_delete');

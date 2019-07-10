@@ -13,17 +13,28 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a href="/series" class="btn btn-dark">Series</a>
-                    <br>
-                    <br>
 
-                    <form action="/movies" method="POST">
+                    <form action="/series" method="POST">
                         @csrf
                         <div class="form-group row">
-                            <label class=" col-sm-2 col-form-label" for="name">Movie Name </label>
+                            <label class=" col-sm-2 col-form-label" for="name">Series Name </label>
                             <div class="col-sm-10">
                             <input type="text" class="form-control" id="movieName"  name="name" value="{{old('name')}}">
                         </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class=" col-sm-2 col-form-label" for="season">Season </label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="season" name="season" value="{{old('season')}}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class=" col-sm-2 col-form-label" for="episode">Episode</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="episode" name="episode" value="{{old('episode')}}">
+                            </div>
                         </div>
                         
                         <div class="form-group row">
@@ -39,6 +50,7 @@
                             <input type="text" class="form-control" id="time_left" name="time_left" value="{{old('time_left')}}">
                             </div>
                         </div>
+                        
                         
                           @if ($errors->any())
                             <div class="alert alert-danger">
@@ -57,11 +69,13 @@
                     <br>
                         <br>
                         
-                    <table class="table" id="indexTable">
+                    <table class="table" id="seriesTable">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Movie Name</th>
+                            <th scope="col">Series Name</th>
+                            <th scope="col">Season</th>
+                            <th scope="col">Episode</th>
                             <th scope="col">Watched</th>
                             <th scope="col">Time Left</th>
                             <th scope="col">Created</th>
@@ -69,21 +83,23 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($movies as $movie)
+                          @foreach($series as $movie)
                           <tr>
                             <th scope="row">{{$movie->id}}</th>
                             <td>{{$movie->name}}</td>
+                            <td>{{$movie->season}}</td>
+                            <td>{{$movie->episode}}</td>
                             <td>{{$movie->watched?'yes':'no'}}</td>
                             <td>{{$movie->time_left}}</td>
                             <td>{{$movie->created_at->toFormattedDateString()}}</td>
                             <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="{{ URL::to('movie/' . $movie->id . '/edit') }}">
+                                <a href="{{ URL::to('series/' . $movie->id . '/edit') }}">
                                     <button type="button" class="btn btn-warning">Edit</button>
                                 </a>&nbsp;
-                                <form action="/movie/delete" method="POST">
+                                <form action="/series/delete" method="POST">
                                     @csrf
-                                    <input type="hidden" value="{{$movie->id}}" id="movie_id" name="movie_id">
+                                    <input type="hidden" value="{{$movie->id}}" id="series_id" name="series_id">
                                     <input type="submit" class="btn btn-danger" value="Delete"/>
                                    </form>
                             </div>
